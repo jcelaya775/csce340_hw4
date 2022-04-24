@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <stack>
+#include <climits>
 
 using namespace std;
 
@@ -57,26 +59,16 @@ int main() {
 }
 
 int getMaxPolyArea(vector<coordinate> coordinates) {
-    /**
-     * move from both ends of coordinates (polygon)
-     * with left and right pointers
-    **/
+    stack<coordinate> cstack;
 
-    // left = 0, right = coordinates.length - 1
+    int maxArea = 0;
+    for (int i = 0; i < coordinates.size(); i++) {
+        int currPos = coordinates[i].getX();
+        int currHeight = coordinates[i].getY();
 
-    // for each given coordinate, store whether or not the height increases 
-    // as you move left or right through the polygon
-    // leftIncreases = []
-    // rightIncreases = []
+        int lastPos = INT_MAX;
 
-    // leftMaxHeight = coordinates[0].getY();
-    // for (int i = 0; i < coordinates.length; i++) {
-    //     int currentHeight = coordinate[i].getY();
-    //     if (currentHeight > leftMaxHeight) {
-    //         
-    //         leftMaxHeight = currentHeight;
-    //     }
-    // }
+    }
 
-    return 0;
+    return maxArea;
 }
