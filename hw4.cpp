@@ -28,17 +28,26 @@ class Coordinate {
 int getMaxPolyArea(vector<Coordinate>);
 
 int main() {
-    cout << "Enter input file: ";
+    // set up input and output files
     string input;
+    cout << "Enter input filename: ";
     cin >> input;
 
     ifstream inputFile(input);
 
-    if (!inputFile.is_open()) {
+
+    string output;
+    cout << "Enter output filename: ";
+    cin >> output;
+
+    ofstream outputFile(output);
+
+    if (!inputFile.is_open() || !outputFile.is_open()) {
         cout << "Error opening file..." << endl;
         exit(-1);
-    }
+    } 
     
+    // read from input
     int n;
     inputFile >> n;
 
@@ -53,8 +62,12 @@ int main() {
         i++;
     }
 
+    // find solution
     int maxPolyArea = getMaxPolyArea(coordinates);
-    cout << "\nmax area = " << maxPolyArea << endl;
+
+    // output solution
+    outputFile << maxPolyArea;
+    cout << "\nSolution has been written to '" << output << "'." << endl;
     
     return 0;
 }
