@@ -64,35 +64,25 @@ int getMaxPolyArea(vector<Coordinate> coordinates) {
 
     stack<Coordinate> coordStack;
 
-    for (int i = 0; i < coordinates.size(); i++) {
-        cout << "i: " << i << endl;
+    for (int i = 1; i < coordinates.size(); i++) {
         int pos = coordinates[i].getX();
         int height = coordinates[i].getY();
-
-        cout << "x-pos = " <<  pos << ", height = " << height << endl;
 
         int startPos = INT_MAX;
         // height decreases -> compute area(s)
         while (!coordStack.empty() && height < coordStack.top().getY()) {
-            cout << "pop stack: (" << coordStack.top().getX() << ", " << coordStack.top().getY() << ")" << endl;
             startPos = coordStack.top().getX();
-            int currArea = height * (pos - coordStack.top().getX());
+            int currArea = coordStack.top().getY() * (pos - coordStack.top().getX());
 
             coordStack.pop();
 
             maxArea = max(currArea, maxArea);
-
-            cout << "current area = " << currArea << endl;            
-            cout << "nex max area = " << maxArea << endl;
         }
 
         // height increases -> push coordinate to stack
         if (coordStack.empty() || height > coordStack.top().getY()) {
             coordStack.push(Coordinate(min(startPos, pos), height));
-            cout << "push stack: (" << coordStack.top().getX() << ", " << coordStack.top().getY() << ")" << endl;
         }
-
-        cout << endl;
     }
 
     return maxArea;
